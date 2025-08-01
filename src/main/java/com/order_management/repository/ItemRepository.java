@@ -10,9 +10,13 @@ import java.util.Optional;
 public interface ItemRepository extends JpaRepository<Item, Long>{
 
     // Find item by name
-    List<Item> findByName(String name);
+    List<Item> findByNameIgnoreCase(String name);
 
     // Find item by sku
     Optional<Item> findBySku(String sku);
+
+    // Check if item with sku exists
+    boolean existBySku(String sku);
+
     
 }
