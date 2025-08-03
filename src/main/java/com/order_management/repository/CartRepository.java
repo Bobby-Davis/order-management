@@ -18,10 +18,10 @@ public interface CartRepository extends JpaRepository<Cart, Long> {
     List<Cart> findByUser(User user);
 
     // Find active cart for a user
-    Optional<Cart> findByUserAndtotalQuantityGreaterThan(User user, int quantity);
+    Optional<Cart> findByUserAndTotalQuantityGreaterThan(User user, int quantity);
 
     // Check if cart exists for session ID
-    boolean existsexistsByUniqueIdentifier(String uniqueIdentifier);
+    boolean existsByUniqueIdentifier(String uniqueIdentifier);
 
     
 }

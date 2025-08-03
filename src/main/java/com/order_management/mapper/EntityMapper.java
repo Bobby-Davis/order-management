@@ -44,7 +44,7 @@ public class EntityMapper {
         
         ItemDTO dto = new ItemDTO();
         dto.setItemId(item.getItemId());
-        dto.setName(item.getName());
+        dto.setItemName(item.getItemName());
         dto.setDescription(item.getDescription());
         dto.setImageUrl(item.getImageUrl());
         dto.setPrice(item.getPrice());
@@ -115,7 +115,7 @@ public class EntityMapper {
         
         Item item = new Item();
         item.setItemId(dto.getItemId());
-        item.setName(dto.getName());
+        item.setItemName(dto.getItemName());
         item.setDescription(dto.getDescription());
         item.setImageUrl(dto.getImageUrl());
         item.setPrice(dto.getPrice());

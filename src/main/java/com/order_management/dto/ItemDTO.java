@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 public class ItemDTO {
     
     private Long itemId;
-    private String name;
+    private String itemName;
     private String description;
     private String imageUrl;
     private BigDecimal price;
@@ -18,9 +18,9 @@ public class ItemDTO {
     }
 
     // Constructor with essential fields
-    public ItemDTO(Long itemId, String name, String description, String imageUrl, BigDecimal price, Integer availableQuantity, String sku) {
+    public ItemDTO(Long itemId, String itemName, String description, String imageUrl, BigDecimal price, Integer availableQuantity, String sku) {
         this.itemId = itemId;
-        this.name = name;
+        this.itemName = itemName;
         this.description = description;
         this.imageUrl = imageUrl;
         this.price = price;
@@ -37,12 +37,12 @@ public class ItemDTO {
         this.itemId = itemId;
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setItemName(String itemName){
+        this.itemName = itemName;
     }
 
     public String getDescription() {

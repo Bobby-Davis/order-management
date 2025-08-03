@@ -1,7 +1,5 @@
 package com.order_management.entity;
 
-import org.springframework.data.annotation.Id;
-
 import jakarta.persistence.*;                // @Entity, @Table, @Id, etc.
 import jakarta.validation.constraints.*;
 
@@ -10,6 +8,7 @@ import jakarta.validation.constraints.*;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;

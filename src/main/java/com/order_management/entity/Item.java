@@ -14,7 +14,7 @@ public class Item {
 
     @NotBlank(message = "Item name is required")
     @Size(max = 100, message = "Item name must not exceed 100 characters")
-    private String name;
+    private String itemName;
 
     @NotBlank(message = "")
     @Size(max = 500, message = "Item description must not exceed 500 characters")
@@ -42,9 +42,9 @@ public class Item {
     public Item() {
     }
 
-    public Item(Long itemId, String name, String description, String imageUrl, BigDecimal price, Integer availableQuantity, String sku) {
+    public Item(Long itemId, String itemName, String description, String imageUrl, BigDecimal price, Integer availableQuantity, String sku) {
         this.itemId = itemId;
-        this.name = name;
+        this.itemName = itemName;
         this.description = description;
         this.imageUrl = imageUrl;
         this.price = price;
@@ -61,12 +61,12 @@ public class Item {
         this.itemId = itemId;
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setName(String name){
-        this.name = name;
+    public void setItemName(String itemName){
+        this.itemName = itemName;
     }
 
     public String getDescription() {
@@ -113,7 +113,7 @@ public class Item {
     public String toString(){
         return "Item{" +
                 "itemId=" + itemId + 
-                ", name='" + name + '\'' +
+                ", itemName='" + itemName + '\'' +
                 ", description'" + description + '\'' +
                 ", imageUrl'" + imageUrl + '\'' +
                 ", price" + price +
