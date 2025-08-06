@@ -10,7 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.order_management.dto.CartDTO;
 import com.order_management.entity.Cart;
+import com.order_management.mapper.EntityMapper;
 import com.order_management.service.CartService;
 
 @RestController
@@ -22,6 +24,9 @@ public class CartController {
     // Inject CartService to use methods
     @Autowired
     private CartService cartService;
+
+    @Autowired
+    private EntityMapper entityMapper;
 
     // Create a new cart
     @PostMapping("/create")
@@ -37,10 +42,10 @@ public class CartController {
     
     // Get cart by ID
     @GetMapping("/{id}")
-    public ResponseEntity<Cart> getCartById(@PathVariable long id) {
+    public ResponseEntity<CartDTO> getCartById(@PathVariable long id) {
         try {
             Optional<Cart> cart = cartService.getCartById(id);
-            return cart.map(ResponseEntity::ok)
+            return cart.map(value -> ResponseEntity.ok(entityMapper.toCartDTO(value)))
                         .orElse(ResponseEntity.notFound().build());
         } catch (Exception e) {
             logger.error("Error fetching cart with ID: {}", id, e);
@@ -55,7 +60,7 @@ public class CartController {
             List<Cart> carts = cartService.getAllCarts();
             return ResponseEntity.ok(carts);
         } catch (Exception e) {
-            logger.error("Error fetchign carts", e);
+            logger.error("Error fetching carts", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
@@ -67,7 +72,7 @@ public class CartController {
             cartService.deleteCart(id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
-            logger.warn("Cart not foudn for deletion: {}", e.getMessage());
+            logger.warn("Cart not found for deletion: {}", e.getMessage());
             return ResponseEntity.notFound().build();
         } catch (Exception e) {
             logger.error("Error deleting cart with ID: {}", id, e);

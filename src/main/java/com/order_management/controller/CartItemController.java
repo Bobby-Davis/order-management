@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.order_management.dto.CartItemDTO;
 import com.order_management.entity.CartItem;
+import com.order_management.mapper.EntityMapper;
 import com.order_management.service.CartItemService;
 
 @RestController
@@ -16,15 +18,19 @@ public class CartItemController {
     @Autowired
     private CartItemService cartItemService;
 
+    @Autowired
+    private EntityMapper entityMapper;
+
     // Add or update item in cart
     @PostMapping("/add")
-    public ResponseEntity<CartItem> addOrUpdateCartItem(
+    public ResponseEntity<CartItemDTO> addOrUpdateCartItem(
         @RequestParam Long cartId,
         @RequestParam Long itemId,
         @RequestParam int quantity
     ) {
         CartItem cartItem = cartItemService.addOrUpdateCartItem(cartId, itemId, quantity);
-        return ResponseEntity.ok(cartItem);
+        CartItemDTO cartItemDTO = entityMapper.toCartItemDTO(cartItem);
+        return ResponseEntity.ok(cartItemDTO);
     }
 
     // Get all items in a cart
