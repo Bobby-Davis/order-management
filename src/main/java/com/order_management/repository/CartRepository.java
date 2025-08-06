@@ -12,7 +12,7 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Long> {
     
     // Find cat by unique session identifier (for quest checkotu or saved sessions)
-    Optional<Cart> findByUniqueIdentifier(String uniqeuItendfier);
+    Optional<Cart> findByUniqueIdentifier(String uniqueIdentifier);
 
     // Find all carts belinong to a user (for saved carts or history)
     List<Cart> findByUser(User user);

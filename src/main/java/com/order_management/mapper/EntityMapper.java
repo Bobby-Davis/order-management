@@ -64,7 +64,7 @@ public class EntityMapper {
         CartItemDTO dto = new CartItemDTO();
         dto.setCartItemId(cartItem.getCartItemId());
         dto.setQuantity(cartItem.getQuantity());
-        dto.setItem(cartItem.getItem());
+        dto.setItem(toItemDTO(cartItem.getItem()));
         
         return dto;
     }
@@ -135,7 +135,7 @@ public class EntityMapper {
         CartItem cartItem = new CartItem();
         cartItem.setCartItemId(dto.getCartItemId());
         cartItem.setQuantity(dto.getQuantity());
-        cartItem.setItem(dto.getItem());
+        cartItem.setItem(toItemEntity(dto.getItem()));
 
         return cartItem;
     }
