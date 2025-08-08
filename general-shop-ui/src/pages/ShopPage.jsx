@@ -13,10 +13,12 @@ function ShopPage() {
 
     return (
         <div>
-            <h2>Available Items</h2>
+            <h2 className="text-3xl font-bold tracking-wide items-center text-center my-4">
+                Shop with Us!!
+            </h2>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
                 {items.map(item => (
-                    <ItemCard key={item.id} item={item} />
+                    <ItemCard key={item.itemId} item={item} />
                 ))}
             </div>
         </div>

@@ -11,11 +11,31 @@ export const CartProvider = ({ children }) => {
 
     // Functions to add and remove items from the cart
     const addToCart = (item) => {
-        setCartItems(prevItems => [...prevItems, item]);
+        setCartItems(prevItems => {
+            const existingItem = prevItems.find(i => i.itemId === item.itemId);
+            if (existingItem) {
+                return prevItems.map(i =>
+                    i.itemId === item.itemId ? { ...i, quantity: i.quantity + item.quantity } : i
+                ); 
+            } else {
+                return [...prevItems, item];
+            }   
+        });
+    };
+
+    const decreaseQuantity = (itemId) => {
+        setCartItems(prevItems => 
+            prevItems.map(item =>
+                item.itemId === itemId && item.quantity > 1
+                    ? { ...item, quantity: item.quantity - 1 }
+                    : item
+            )
+            .filter(item => item.quantity > 0) // Remove items with quantity 0
+        );
     };
 
     const removeFromCart = (itemId) => {
-        setCartItems(prevItems => prevItems.filter(item => item.id !== itemId));
+        setCartItems(prevItems => prevItems.filter(item => item.itemId !== itemId));
     };
 
     // Value to be provided to components that consume this context
@@ -23,7 +43,8 @@ export const CartProvider = ({ children }) => {
     const value = {
         cartItems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        decreaseQuantity
     }
 
     return (

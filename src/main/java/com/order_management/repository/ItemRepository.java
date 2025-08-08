@@ -18,5 +18,6 @@ public interface ItemRepository extends JpaRepository<Item, Long>{
     // Check if item with sku exists
     boolean existsBySku(String sku);
 
+
     
 }

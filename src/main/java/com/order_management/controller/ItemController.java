@@ -35,6 +35,24 @@ public class ItemController {
                       .orElse(ResponseEntity.notFound().build());
     }
 
+
+     
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Item> getItemByIdParam(@PathVariable Long id) {
+        Optional<Item> itemOpt = itemService.getItemById(id);
+        return itemOpt.map(ResponseEntity::ok)
+                      .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/sku/{sku}")
+    public ResponseEntity<Item> getItemBySku(@PathVariable String sku) {
+        Optional<Item> itemOpt = itemService.getItemBySku(sku);
+        return itemOpt.map(ResponseEntity::ok)
+                      .orElse(ResponseEntity.notFound().build());
+    }
+    
+
+
     // Create new item
     @PostMapping
     public ResponseEntity<Item> createItem(@RequestBody Item item) {
